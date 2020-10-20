@@ -12,29 +12,28 @@ public class GenerateOutputFiles {
 
 	public static final String inputPath = "BibInputFiles/";
 	public static final String outputPath = "OuputFiles/";
+	public static final Scanner[] bibScanner = new Scanner[10];
 
-	public static void generateAllTypesOfJournalFiles(Scanner scanner) {
-		for (int i = 1; i <= 10; i++) {
-
-			String fileName = "Latex" + i + ".bib";
+	public static void generateAllTypesOfJournalFiles() {
+		
+		for (int fileIndex = 0; fileIndex < 10; fileIndex++) {
+			String fileName = "Latex" + (fileIndex + 1) + ".bib";
 
 			try {
-				scanner = new Scanner(new FileInputStream(inputPath + fileName));
-				fileCreations(scanner, i);
+				bibScanner[fileIndex] = new Scanner(new FileInputStream(inputPath + fileName));
+				fileCreations(fileIndex + 1);
 
 			} catch (FileNotFoundException e) {
 				SystemMessage.coundNotOpenFile(fileName);
-				System.exit(0);
-
-			} finally {
 				ManageOutputFiles.deleteFilesFromDirectory(new File(GenerateOutputFiles.outputPath));
-				scanner.close();
+				ScannerManagement.closeAllScanner();
+				System.exit(0);
 			}
 
 		}
 	}
 
-	public static void fileCreations(Scanner scanner, int fileIndex) throws FileNotFoundException {
+	public static void fileCreations(int fileIndex) throws FileNotFoundException {
 
 		try {
 			File ieee = new File(outputPath + "IEEE" + fileIndex + ".json");

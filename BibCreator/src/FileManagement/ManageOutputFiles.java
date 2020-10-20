@@ -20,4 +20,19 @@ public class ManageOutputFiles {
 
 		return true;
 	}
+	
+	public static boolean deleteInvalidOutputFiles(int fileIndex) {
+
+		File ieee = new File(GenerateOutputFiles.outputPath + "IEEE" + fileIndex + ".json");
+		File acm = new File(GenerateOutputFiles.outputPath + "ACM" + fileIndex + ".json");
+		File nj = new File(GenerateOutputFiles.outputPath + "NJ" + fileIndex + ".json");
+		ieee.delete();
+		acm.delete();
+		nj.delete();
+		
+		
+		return true;
+	}
+	
+	
 }

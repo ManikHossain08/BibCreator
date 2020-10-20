@@ -1,25 +1,44 @@
 package Client;
 
 import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
+import BibFileProperty.BibAttributes;
+import BibFileProperty.CheckBibFilesValidity;
 import FileManagement.GenerateOutputFiles;
 import FileManagement.ManageOutputFiles;
 import Messaging.SystemMessage;
 
 public class Client {
-
-	private static Scanner scanner = null;
+	private static int noOfInvalidFile = 1;
 
 	public static void main(String[] args) {
-		// PrintWriter pw = null;
-		
-		
+
 		SystemMessage.welcomeMessgae();
+
 		ManageOutputFiles.deleteFilesFromDirectory(new File(GenerateOutputFiles.outputPath));
-		GenerateOutputFiles.generateAllTypesOfJournalFiles(scanner);
+		GenerateOutputFiles.generateAllTypesOfJournalFiles();
+
+		processFilesForValidation();
+
+	}
+
+	private static void processFilesForValidation() {
+		Scanner[] opennedBibScanner = GenerateOutputFiles.bibScanner;
+
+		for (int i = 0; i < opennedBibScanner.length; i++) {
+			
+			List<BibAttributes> atricles = CheckBibFilesValidity.checkValidity(opennedBibScanner[i], i + 1);
+			
+			if (atricles != null) {
+				System.out.println(i + 1);
+			} else {
+				noOfInvalidFile++;
+			}
+		}
 		
-		//ManageOutputFiles.deleteSpecificFilesFromDirectory(new File(GenerateOutputFiles.outputPath + "IEEE1.json"));
+		System.out.print("total Invalid file: " + noOfInvalidFile);
 
 	}
 

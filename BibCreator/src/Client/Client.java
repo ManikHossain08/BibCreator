@@ -5,16 +5,18 @@ import java.util.List;
 import java.util.Scanner;
 
 import BibFileProperty.BibAttributes;
-import BibFileProperty.CheckBibFilesValidity;
+import BibFileProperty.ProcessBibFiles;
 import FileManagement.GenerateOutputFiles;
 import FileManagement.ManageOutputFiles;
 import FileManagement.ScannerManagement;
 import Messaging.SystemMessage;
 import RefferenceFormatGenerator.RefferenceFormatFactory;
+import ReviewOutputFiles.ReviewJournalFiles;
 
 public class Client {
 
 	private static int noOfInvalidFile = 0;
+	private static Scanner scanner = null;
 
 	public static void main(String[] args) {
 
@@ -22,7 +24,7 @@ public class Client {
 		ManageOutputFiles.deleteFilesFromDirectory(new File(GenerateOutputFiles.outputPath));
 		GenerateOutputFiles.generateAllTypesOfJournalFiles();
 		processFilesForValidation();
-
+		reviewOutputFile();
 	}
 
 	private static void processFilesForValidation() {
@@ -31,7 +33,7 @@ public class Client {
 
 		for (int i = 0; i < opennedBibScanner.length; i++) {
 
-			List<BibAttributes> atricles = CheckBibFilesValidity.checkValidity(opennedBibScanner[i], i + 1);
+			List<BibAttributes> atricles = ProcessBibFiles.checkValidity(opennedBibScanner[i], i + 1);
 			if (atricles != null) {
 				RefferenceFormatFactory.IEEEFormat(atricles, i + 1);
 				RefferenceFormatFactory.ACMFormat(atricles, i + 1);
@@ -44,7 +46,14 @@ public class Client {
 
 		ScannerManagement.closeAllScanner();
 		SystemMessage.countInvalidFileMessage(noOfInvalidFile);
+	}
 
+	private static void reviewOutputFile() {
+		SystemMessage.reviewFileMsg();
+		scanner = new Scanner(System.in);
+		String fileName = scanner.nextLine();
+		ReviewJournalFiles.reviewRequestedFile(fileName, scanner);
+		scanner.close();
 	}
 
 }

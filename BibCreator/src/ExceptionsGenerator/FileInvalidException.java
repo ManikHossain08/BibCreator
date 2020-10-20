@@ -7,8 +7,8 @@ public class FileInvalidException extends Exception {
 		super("Error: Input file cannot be parsed due to missing information (i.e. month={}, title={}, etc.)");
 	}
 
-	public FileInvalidException(String s) {
-		super(s);
+	public FileInvalidException(String userMsg) {
+		super(userMsg);
 	}
 
 	public String getMessage() {

@@ -8,7 +8,7 @@ import ExceptionsGenerator.FileInvalidException;
 import FileManagement.ManageOutputFiles;
 import Messaging.SystemMessage;
 
-public class CheckBibFilesValidity {
+public class ProcessBibFiles {
 
 	private static List<BibAttributes> atricles = null;
 	private static BibAttributes newAtricle = null;

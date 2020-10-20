@@ -18,6 +18,7 @@ public class SystemMessage {
 	}
 
 	public static String invalidFileMessage(String fileName, String attrName) {
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("Error: Detected Empty Field!\n");
 		sb.append("=============================");
@@ -28,5 +29,14 @@ public class SystemMessage {
 		sb.append("\n\n");
 		System.out.println(sb.toString());
 		return sb.toString();
+	}
+	
+	public static String countInvalidFileMessage(int noOfInvalid) {
+
+		String message = "A total of  " + noOfInvalid + " were invalid, and could not be processed."
+				+ " All other " + (10 - noOfInvalid) + " \"Valid\" files have been created.";
+
+		System.out.println(message);
+		return message;
 	}
 }

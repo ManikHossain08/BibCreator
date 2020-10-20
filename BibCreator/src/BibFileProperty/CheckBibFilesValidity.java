@@ -28,7 +28,7 @@ public class CheckBibFilesValidity {
 			if (!checkValidityAndfindAttribues(eachLine))
 				return atricles;
 		}
-
+		atricles.add(newAtricle);
 		return atricles;
 	}
 

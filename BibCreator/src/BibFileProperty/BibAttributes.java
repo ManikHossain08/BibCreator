@@ -2,24 +2,6 @@ package BibFileProperty;
 
 import java.util.List;
 
-class Authors{
-	
-	private String author;
-	
-	public Authors(String author) {
-		this.author = author;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	
-}
-
 public class BibAttributes {
 	private List<Authors> authors;
 	private String journal;
@@ -111,20 +93,3 @@ public class BibAttributes {
 	
 	
 }
-
-
-
-/*
-
-author={J. Park and J. N. James and Q. Li and Y. Xu and W. Huang}, 
-journal={IEEE Transactions on Vehicular Technology}, 
-title={Optimal DASH-Multicasting over LTE}, 
-year={2018}, 
-volume={PP}, 
-number={99}, 
-pages={15-27}, 
-keywords={Forward error correction;Long Term Evolution;Maintenance engineering;Multicast communication;Resource management;Static VAr compensators;Streaming media;DASH;LTE;convex optimization;eMBMS;multicasting}, 
-doi={10.1109/TVT.2018.2789899}, 
-ISSN={0018-9545}, 
-month={January},
-*/

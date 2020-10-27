@@ -6,18 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import FileManagement.GenerateOutputFiles;
 import Messaging.SystemMessage;
 
 public class ReviewJournalFiles {
 	private static BufferedReader buffer = null;
 	private static String refference;
 
+	/**
+	 * @param fileName
+	 * @param scanner
+	 */
 	public static void reviewRequestedFile(String fileName, Scanner scanner) {
 
 		try {
 
-			buffer = new BufferedReader(new FileReader(GenerateOutputFiles.outputPath + fileName));
+			buffer = new BufferedReader(new FileReader(fileName));
 			reviewFile(buffer, fileName);
 
 		} catch (FileNotFoundException notFound) {
@@ -28,7 +31,7 @@ public class ReviewJournalFiles {
 			fileName = scanner.nextLine();
 
 			try {
-				buffer = new BufferedReader(new FileReader(GenerateOutputFiles.outputPath + fileName));
+				buffer = new BufferedReader(new FileReader(fileName));
 				reviewFile(buffer, fileName);
 
 			} catch (FileNotFoundException e) {
@@ -45,6 +48,11 @@ public class ReviewJournalFiles {
 
 	}
 
+	/**
+	 * @param bReader
+	 * @param fileName
+	 * @throws IOException
+	 */
 	public static void reviewFile(BufferedReader bReader, String fileName) throws IOException {
 		SystemMessage.successReviewFileMsg(fileName);
 		refference = bReader.readLine();

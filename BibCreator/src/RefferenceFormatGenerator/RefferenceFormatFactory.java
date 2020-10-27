@@ -6,14 +6,17 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import BibFileProperty.BibAttributes;
-import FileManagement.GenerateOutputFiles;
 
 public class RefferenceFormatFactory {
 	private static String fileName;
 
+	/**
+	 * @param atricles
+	 * @param fileIndex
+	 */
 	public static void IEEEFormat(List<BibAttributes> atricles, int fileIndex) {
 
-		fileName = GenerateOutputFiles.outputPath + "IEEE" + fileIndex + ".json";
+		fileName =  "IEEE" + fileIndex + ".json";
 		PrintWriter pw = null;
 
 		try {
@@ -28,7 +31,7 @@ public class RefferenceFormatFactory {
 
 	public static void ACMFormat(List<BibAttributes> atricles, int fileIndex) {
 
-		fileName = GenerateOutputFiles.outputPath + "ACM" + fileIndex + ".json";
+		fileName = "ACM" + fileIndex + ".json";
 		PrintWriter pw = null;
 
 		try {
@@ -43,7 +46,7 @@ public class RefferenceFormatFactory {
 
 	public static void NJFormat(List<BibAttributes> atricles, int fileIndex) {
 
-		fileName = GenerateOutputFiles.outputPath + "NJ" + fileIndex + ".json";
+		fileName = "NJ" + fileIndex + ".json";
 		PrintWriter pw = null;
 
 		try {
@@ -56,6 +59,11 @@ public class RefferenceFormatFactory {
 
 	}
 
+	/**
+	 * @param printer
+	 * @param allFormatedReffences
+	 * @throws IOException
+	 */
 	private static void putGereneratedRefferenceOnOutputFile(PrintWriter printer, String allFormatedReffences)
 			throws IOException {
 

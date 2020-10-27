@@ -4,35 +4,57 @@ import java.io.File;
 
 public class ManageOutputFiles {
 
-	public static boolean deleteFilesFromDirectory(File directoryToBeDeleted) {
-		
-		File[] allContents = directoryToBeDeleted.listFiles();
-		if (allContents != null) {
-			for (File file : allContents) {
-				deleteSpecificFilesFromDirectory (file);
-			}
+	/**
+	 * @param directoryToBeDeleted
+	 * @return
+	 */
+	public static boolean deleteFilesFromDirectory() {
+
+		for (int i = 1; i <= 10; i++) {
+			File ieee = new File("IEEE" + i + ".json");
+			File acm = new File("ACM" + i + ".json");
+			File nj = new File("NJ" + i + ".json");
+
+			deleteSpecificFilesFromDirectory(ieee);
+			deleteSpecificFilesFromDirectory(acm);
+			deleteSpecificFilesFromDirectory(nj);
 		}
+
 		return true;
 	}
 
 	public static boolean deleteSpecificFilesFromDirectory(File file) {
 
-		file.delete();
+		if (file.exists()) {
+			file.delete();
+		}
 
 		return true;
 	}
-	
+
+	/**
+	 * @param fileIndex
+	 * @return
+	 */
 	public static boolean deleteInvalidOutputFiles(int fileIndex) {
 
-		File ieee = new File(GenerateOutputFiles.outputPath + "IEEE" + fileIndex + ".json");
-		File acm = new File(GenerateOutputFiles.outputPath + "ACM" + fileIndex + ".json");
-		File nj = new File(GenerateOutputFiles.outputPath + "NJ" + fileIndex + ".json");
-		ieee.delete();
-		acm.delete();
-		nj.delete();
-	
+		File ieee = new File("IEEE" + fileIndex + ".json");
+		File acm = new File("ACM" + fileIndex + ".json");
+		File nj = new File("NJ" + fileIndex + ".json");
+
+		if (ieee.exists()) {
+			ieee.delete();
+		}
+
+		if (acm.exists()) {
+			acm.delete();
+		}
+
+		if (nj.exists()) {
+			nj.delete();
+		}
+
 		return true;
 	}
-	
-	
+
 }

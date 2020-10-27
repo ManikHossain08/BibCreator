@@ -10,22 +10,22 @@ import Messaging.SystemMessage;
 
 public class GenerateOutputFiles {
 
-	public static final String inputPath = "BibInputFiles/";
-	public static final String outputPath = "OuputFiles/";
+	//public static final String inputPath = "./";
+	//public static final String outputPath = "./";
 	public static final Scanner[] bibScanner = new Scanner[10];
 
 	public static void generateAllTypesOfJournalFiles() {
 		
 		for (int fileIndex = 0; fileIndex < 10; fileIndex++) {
+			
 			String fileName = "Latex" + (fileIndex + 1) + ".bib";
-
 			try {
-				bibScanner[fileIndex] = new Scanner(new FileInputStream(inputPath + fileName));
+				bibScanner[fileIndex] = new Scanner(new FileInputStream(fileName));
 				fileCreations(fileIndex + 1);
 
 			} catch (FileNotFoundException e) {
 				SystemMessage.coundNotOpenFile(fileName);
-				ManageOutputFiles.deleteFilesFromDirectory(new File(GenerateOutputFiles.outputPath));
+				ManageOutputFiles.deleteFilesFromDirectory();
 				ScannerManagement.closeAllScanner();
 				System.exit(0);
 			}
@@ -36,9 +36,9 @@ public class GenerateOutputFiles {
 	public static void fileCreations(int fileIndex) throws FileNotFoundException {
 
 		try {
-			File ieee = new File(outputPath + "IEEE" + fileIndex + ".json");
-			File acm = new File(outputPath + "ACM" + fileIndex + ".json");
-			File nj = new File(outputPath + "NJ" + fileIndex + ".json");
+			File ieee = new File("IEEE" + fileIndex + ".json");
+			File acm = new File("ACM" + fileIndex + ".json");
+			File nj = new File("NJ" + fileIndex + ".json");
 			ieee.createNewFile();
 			acm.createNewFile();
 			nj.createNewFile();

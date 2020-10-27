@@ -16,6 +16,11 @@ public class ProcessBibFiles {
 	private static int noOfArticle = 0;
 	private static int bibFileNo = 0;
 
+	/**
+	 * @param scanner
+	 * @param fileNo
+	 * @return
+	 */
 	public static List<BibAttributes> checkValidity(Scanner scanner, int fileNo) {
 		noOfArticle = 0;
 		emptyFields = "";
@@ -32,6 +37,10 @@ public class ProcessBibFiles {
 		return atricles;
 	}
 
+	/**
+	 * @param line
+	 * @return
+	 */
 	public static boolean checkValidityAndfindAttribues(String line) {
 		if (line.startsWith("@ARTICLE")) {
 
@@ -43,9 +52,7 @@ public class ProcessBibFiles {
 			return true;
 		}
 		String[] attribute = line.split("=");
-		if (attribute.length == 0)
-			return true;
-		else if (attribute.length == 1)
+		if (attribute.length == 0 || attribute.length == 1)
 			return true;
 		else if (attribute.length == 2) {
 			try {
@@ -63,6 +70,11 @@ public class ProcessBibFiles {
 		return true;
 	}
 
+	/**
+	 * @param attr
+	 * @return
+	 * @throws FileInvalidException
+	 */
 	private static boolean isValidArticle(String[] attr) throws FileInvalidException {
 		String[] isEmpty = attr[1].substring(1).split("}");
 		if (isEmpty[0].isBlank() || isEmpty[0].isEmpty() || isEmpty[0].contentEquals("")) {
@@ -74,9 +86,12 @@ public class ProcessBibFiles {
 		return true;
 	}
 
+	/**
+	 * @param attribute
+	 */
 	private static void setAllAttribute(String[] attribute) {
 
-		String value = attribute[1].substring(1);
+		String value = attribute[1].strip().substring(1);
 		String splitedValue = value.split("}")[0];
 
 		switch (attribute[0]) {
@@ -129,6 +144,10 @@ public class ProcessBibFiles {
 
 	}
 
+	/**
+	 * @param names
+	 * @return
+	 */
 	private static List<Authors> handleAuthorName(String names) {
 
 		List<Authors> authors = new ArrayList<>();

@@ -1,6 +1,5 @@
 package Client;
 
-import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,15 +12,36 @@ import Messaging.SystemMessage;
 import RefferenceFormatGenerator.RefferenceFormatFactory;
 import ReviewOutputFiles.ReviewJournalFiles;
 
+/**
+* 
+* <h1> BibCreator! </h1>
+* 
+* <p>
+* COMP6481 – Fall 2020
+* Programming and Problem Solving
+* Assignment # 2
+* Due Date: November 6, 2020 by 11:59PM
+*
+* Bibliography Creator Application using Java Programming.
+*
+* @author  Md Manik Hossain
+* @version 1.0
+* @since   2020-October-20 
+*/
+
 public class Client {
 
 	private static int noOfInvalidFile = 0;
 	private static Scanner scanner = null;
 
+	
+	/**
+	 * @param args unused
+	 */
 	public static void main(String[] args) {
 
 		SystemMessage.welcomeMessgae();
-		ManageOutputFiles.deleteFilesFromDirectory(new File(GenerateOutputFiles.outputPath));
+		ManageOutputFiles.deleteFilesFromDirectory();
 		GenerateOutputFiles.generateAllTypesOfJournalFiles();
 		processFilesForValidation();
 		reviewOutputFile();
@@ -32,12 +52,12 @@ public class Client {
 		Scanner[] opennedBibScanner = GenerateOutputFiles.bibScanner;
 
 		for (int i = 0; i < opennedBibScanner.length; i++) {
-
-			List<BibAttributes> atricles = ProcessBibFiles.checkValidity(opennedBibScanner[i], i + 1);
+			int fileNo = i + 1;
+			List<BibAttributes> atricles = ProcessBibFiles.checkValidity(opennedBibScanner[i], fileNo);
 			if (atricles != null) {
-				RefferenceFormatFactory.IEEEFormat(atricles, i + 1);
-				RefferenceFormatFactory.ACMFormat(atricles, i + 1);
-				RefferenceFormatFactory.NJFormat(atricles, i + 1);
+				RefferenceFormatFactory.IEEEFormat(atricles, fileNo);
+				RefferenceFormatFactory.ACMFormat(atricles, fileNo);
+				RefferenceFormatFactory.NJFormat(atricles, fileNo);
 
 			} else {
 				noOfInvalidFile++;
@@ -47,6 +67,7 @@ public class Client {
 		ScannerManagement.closeAllScanner();
 		SystemMessage.countInvalidFileMessage(noOfInvalidFile);
 	}
+
 
 	private static void reviewOutputFile() {
 		SystemMessage.reviewFileMsg();

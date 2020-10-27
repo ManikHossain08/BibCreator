@@ -2,6 +2,12 @@ package BibFileProperty;
 
 import java.util.List;
 
+
+
+/**
+ * @author manikhossain
+ *
+ */
 public class BibAttributes {
 	private List<Authors> authors;
 	private String journal;
@@ -16,6 +22,18 @@ public class BibAttributes {
 	
 	public BibAttributes() {}
 	
+	/**
+	 * @param author
+	 * @param journal
+	 * @param title
+	 * @param year
+	 * @param volume
+	 * @param number
+	 * @param pages
+	 * @param doi
+	 * @param issn
+	 * @param month
+	 */
 	public BibAttributes(List<Authors> author, String journal, String title, int year, String volume, int number,
 			String pages, String doi, String issn, String month) {
 		this.authors = author;

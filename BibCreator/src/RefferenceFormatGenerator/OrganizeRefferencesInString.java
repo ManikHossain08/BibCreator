@@ -7,6 +7,10 @@ import BibFileProperty.BibAttributes;
 
 public class OrganizeRefferencesInString {
 
+	/**
+	 * @param atricles
+	 * @return
+	 */
 	public static String organizeInIEEFormat(List<BibAttributes> atricles) {
 
 		StringBuilder IEEE = new StringBuilder();
@@ -73,6 +77,10 @@ public class OrganizeRefferencesInString {
 		return NJ.toString();
 	}
 
+	/**
+	 * @param authors
+	 * @return
+	 */
 	private static String authorsInIEEE(List<Authors> authors) {
 
 		String authorStr = "";

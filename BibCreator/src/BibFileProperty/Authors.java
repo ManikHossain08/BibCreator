@@ -1,5 +1,9 @@
 package BibFileProperty;
 
+/**
+ * @author manikhossain
+ *
+ */
 public class Authors{
 	
 	private String author;

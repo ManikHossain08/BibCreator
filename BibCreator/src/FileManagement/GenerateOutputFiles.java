@@ -8,12 +8,19 @@ import java.util.Scanner;
 
 import Messaging.SystemMessage;
 
+/**
+ * @author manikhossain
+ *
+ */
 public class GenerateOutputFiles {
 
 	//public static final String inputPath = "./";
 	//public static final String outputPath = "./";
 	public static final Scanner[] bibScanner = new Scanner[10];
 
+	/**
+	 * 
+	 */
 	public static void generateAllTypesOfJournalFiles() {
 		
 		for (int fileIndex = 0; fileIndex < 10; fileIndex++) {
@@ -33,6 +40,10 @@ public class GenerateOutputFiles {
 		}
 	}
 
+	/**
+	 * @param fileIndex
+	 * @throws FileNotFoundException
+	 */
 	public static void fileCreations(int fileIndex) throws FileNotFoundException {
 
 		try {
@@ -45,7 +56,7 @@ public class GenerateOutputFiles {
 
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 
 	}

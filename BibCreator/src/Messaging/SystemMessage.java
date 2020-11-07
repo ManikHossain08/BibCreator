@@ -1,5 +1,9 @@
 package Messaging;
 
+/**
+ * @author manikhossain
+ *
+ */
 public class SystemMessage {
 
 	public static String welcomeMessgae() {
